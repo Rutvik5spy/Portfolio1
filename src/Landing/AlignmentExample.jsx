@@ -65,29 +65,29 @@ function AlignmentExample() {
 
   const projects = [
     {
-      title: "E-Commerce Platform",
-      description: "A full-stack e-commerce solution with React, Node.js, and MongoDB. Features include user authentication, payment processing, and admin dashboard.",
-      image: "https://images.pexels.com/photos/230544/pexels-photo-230544.jpeg?auto=compress&cs=tinysrgb&w=500",
+      title: "E-Commerce Platform Urban-Monkey",
+      description: "A frontend e-commerce solution with React, JavaScript,Html5,Css3. Features include user authentication, Searching, and different section.",
+      image: "https://searchtap.io/img/success-stories/urbanmonkey/urbanmonkey-search.jpg",
       technologies: ["React", "Node.js", "MongoDB", "Stripe"],
-      liveLink: "https://example.com",
-      codeLink: "https://github.com/username/ecommerce"
-    },
-    {
-      title: "Task Management App",
-      description: "A collaborative task management application with real-time updates, team collaboration features, and advanced filtering capabilities.",
-      image: "https://images.pexels.com/photos/3184306/pexels-photo-3184306.jpeg?auto=compress&cs=tinysrgb&w=500",
-      technologies: ["React", "Firebase", "Bootstrap"],
-      liveLink: "https://example.com",
-      codeLink: "https://github.com/username/task-app"
-    },
-    {
-      title: "Weather Dashboard",
-      description: "A modern weather application with interactive maps, detailed forecasts, and location-based services using multiple weather APIs.",
-      image: "https://images.pexels.com/photos/1118873/pexels-photo-1118873.jpeg?auto=compress&cs=tinysrgb&w=500",
-      technologies: ["React", "OpenWeather API", "Chart.js"],
-      liveLink: "https://example.com",
-      codeLink: "https://github.com/username/weather-app"
+      liveLink: "https://urban-mokey-rutvik-patil.netlify.app",
+      codeLink: "https://github.com/Rutvik5spy/urban-monkey"
     }
+    // {
+    //   title: "Task Management App",
+    //   description: "A collaborative task management application with real-time updates, team collaboration features, and advanced filtering capabilities.",
+    //   image: "https://images.pexels.com/photos/3184306/pexels-photo-3184306.jpeg?auto=compress&cs=tinysrgb&w=500",
+    //   technologies: ["React", "Firebase", "Bootstrap"],
+    //   liveLink: "https://example.com",
+    //   codeLink: "https://github.com/username/task-app"
+    // },
+    // {
+    //   title: "Weather Dashboard",
+    //   description: "A modern weather application with interactive maps, detailed forecasts, and location-based services using multiple weather APIs.",
+    //   image: "https://images.pexels.com/photos/1118873/pexels-photo-1118873.jpeg?auto=compress&cs=tinysrgb&w=500",
+    //   technologies: ["React", "OpenWeather API", "Chart.js"],
+    //   liveLink: "https://example.com",
+    //   codeLink: "https://github.com/username/weather-app"
+    // }
   ];
 
   const skills = [
@@ -122,7 +122,7 @@ function AlignmentExample() {
       <Navbar bg="white" expand="lg" fixed="top" className="shadow-sm">
         <Container>
           <Navbar.Brand href="#home" className="fw-bold fs-3">
-            <span className="text-primary">Port</span>
+            <span >Port</span>
             <span className="text-secondary">folio</span>
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
@@ -160,7 +160,7 @@ function AlignmentExample() {
                 </div> */}
               </div>
               <h1 className="display-3 fw-bold mb-3">
-                Rutvik <span className="text-primary">Patil</span>
+                Rutvik <span className="text-secondary">Patil</span>
               </h1>
               <p className="lead mb-4 text-muted">
                My name is Rutvik Patil. I possess a solid foundation in web development and programming with technical skills in Java, HTML, CSS, JavaScript, and React.I bring strong soft skills to the table — I am a hardworking, quick learner, and highly adaptable.
@@ -441,7 +441,7 @@ where I can apply my skills and grow as a software professional.
                     <a href='https://github.com/Rutvik5spy' ><FaGithub /></a>
                   </Button>
                   <Button variant="outline-light" size="lg" className="rounded-circle">
-                    <FaLinkedin />
+                    <a href="https://www.linkedin.com/in/patil-rutvik"><FaLinkedin /></a>
                   </Button>
                   <Button variant="outline-light" size="lg" className="rounded-circle">
                     <FaEnvelope />
