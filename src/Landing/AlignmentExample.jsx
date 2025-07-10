@@ -9,6 +9,7 @@ import GitHubIcon from '@mui/icons-material/GitHub';
 import MailIcon from '@mui/icons-material/Mail';
 import InstagramIcon from '@mui/icons-material/Instagram';
 import SvgIcon from '@mui/material/SvgIcon';
+import Card from 'react-bootstrap/Card';
 
 function AlignmentExample() {
   return (
@@ -96,7 +97,47 @@ JavaScript, and React.I bring strong soft skills to the table — I am a hardwor
         </Col>
       </Row>
     </Container>
-     
+    <br/><br/>
+
+       <Container className="mt-4">
+      <Row className="g-4">
+        <Col xs={12} sm={6} md={4}>
+          <Card>
+            <Card.Img variant="top" src="https://via.placeholder.com/300x180" alt="Card image" />
+            <Card.Body>
+              <Card.Title>Card Title</Card.Title>
+              <Card.Subtitle className="mb-2 text-muted">Card Subtitle</Card.Subtitle>
+              <Card.Link href="#">Card Link</Card.Link>
+              <Card.Link href="#">Another Link</Card.Link>
+            </Card.Body>
+          </Card>
+        </Col>
+
+        <Col xs={12} sm={6} md={4}>
+          <Card>
+            <Card.Img variant="top" src="https://via.placeholder.com/300x180" alt="Card image" />
+            <Card.Body>
+              <Card.Title>Card Title</Card.Title>
+              <Card.Subtitle className="mb-2 text-muted">Card Subtitle</Card.Subtitle>
+              <Card.Link href="#">Card Link</Card.Link>
+              <Card.Link href="#">Another Link</Card.Link>
+            </Card.Body>
+          </Card>
+        </Col>
+
+        <Col xs={12} sm={6} md={4}>
+          <Card>
+            <Card.Img variant="top" src="https://via.placeholder.com/300x180" alt="Card image" />
+            <Card.Body>
+              <Card.Title>Card Title</Card.Title>
+              <Card.Subtitle className="mb-2 text-muted">Card Subtitle</Card.Subtitle>
+              <Card.Link href="#">Card Link</Card.Link>
+              <Card.Link href="#">Another Link</Card.Link>
+            </Card.Body>
+          </Card>
+        </Col>
+      </Row>
+    </Container>
     </div>
   );
 }
