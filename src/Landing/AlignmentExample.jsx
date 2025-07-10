@@ -8,7 +8,6 @@ import Badge from '@mui/material/Badge';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import MailIcon from '@mui/icons-material/Mail';
 import InstagramIcon from '@mui/icons-material/Instagram';
-import {Link} from 'react-router-dom'
 import SvgIcon from '@mui/material/SvgIcon';
 
 function AlignmentExample() {
