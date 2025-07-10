@@ -1,143 +1,464 @@
-import Nav from 'react-bootstrap/Nav';
-import Marquee from "react-fast-marquee";
-import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
-import Image from 'react-bootstrap/Image';
-import Badge from '@mui/material/Badge';
-import GitHubIcon from '@mui/icons-material/GitHub';
-import MailIcon from '@mui/icons-material/Mail';
-import InstagramIcon from '@mui/icons-material/Instagram';
-import SvgIcon from '@mui/material/SvgIcon';
-import Card from 'react-bootstrap/Card';
+import React, { useState, useEffect } from 'react';
+import { 
+  Navbar, 
+  Nav, 
+  Container, 
+  Row, 
+  Col, 
+  Button, 
+  Card, 
+  ProgressBar, 
+  Badge 
+} from 'react-bootstrap';
+import { 
+  FaGithub, 
+  FaLinkedin, 
+  FaEnvelope, 
+  FaPhone, 
+  FaMapMarkerAlt, 
+  FaExternalLinkAlt, 
+  FaCode, 
+  FaReact, 
+  FaNodeJs, 
+  FaDatabase, 
+  FaHtml5, 
+  FaCss3Alt, 
+  FaJs, 
+  FaGraduationCap, 
+  FaAward,
+  FaChevronDown
+} from 'react-icons/fa';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 function AlignmentExample() {
+  const [activeSection, setActiveSection] = useState('home');
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const sections = ['home', 'about', 'skills', 'education', 'projects', 'contact'];
+      const scrollPosition = window.scrollY + 100;
+
+      for (const section of sections) {
+        const element = document.getElementById(section);
+        if (element) {
+          const offsetTop = element.offsetTop;
+          const offsetBottom = offsetTop + element.offsetHeight;
+
+          if (scrollPosition >= offsetTop && scrollPosition < offsetBottom) {
+            setActiveSection(section);
+            break;
+          }
+        }
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const scrollToSection = (sectionId) => {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
+  const projects = [
+    {
+      title: "E-Commerce Platform",
+      description: "A full-stack e-commerce solution with React, Node.js, and MongoDB. Features include user authentication, payment processing, and admin dashboard.",
+      image: "https://images.pexels.com/photos/230544/pexels-photo-230544.jpeg?auto=compress&cs=tinysrgb&w=500",
+      technologies: ["React", "Node.js", "MongoDB", "Stripe"],
+      liveLink: "https://example.com",
+      codeLink: "https://github.com/username/ecommerce"
+    },
+    {
+      title: "Task Management App",
+      description: "A collaborative task management application with real-time updates, team collaboration features, and advanced filtering capabilities.",
+      image: "https://images.pexels.com/photos/3184306/pexels-photo-3184306.jpeg?auto=compress&cs=tinysrgb&w=500",
+      technologies: ["React", "Firebase", "Bootstrap"],
+      liveLink: "https://example.com",
+      codeLink: "https://github.com/username/task-app"
+    },
+    {
+      title: "Weather Dashboard",
+      description: "A modern weather application with interactive maps, detailed forecasts, and location-based services using multiple weather APIs.",
+      image: "https://images.pexels.com/photos/1118873/pexels-photo-1118873.jpeg?auto=compress&cs=tinysrgb&w=500",
+      technologies: ["React", "OpenWeather API", "Chart.js"],
+      liveLink: "https://example.com",
+      codeLink: "https://github.com/username/weather-app"
+    }
+  ];
+
+  const skills = [
+    { name: "JavaScript", level: 85, icon: <FaJs className="text-warning" /> },
+    { name: "React", level: 80, icon: <FaReact className="text-info" /> },
+    { name: "Java", level: 75, icon: <FaNodeJs className="text-success" /> },
+    { name: "HTML5", level: 100, icon: <FaHtml5 className="text-danger" /> },
+    { name: "CSS3", level: 100, icon: <FaCss3Alt className="text-primary" /> },
+    { name: "SQL", level: 90, icon: <FaDatabase className="text-secondary" /> }
+  ];
+
+  const education = [
+    {
+      degree: "Bachelor of Engineering in Computer Science",
+      institution: "Savitribai Phule Pune University",
+      year: "2020 - 2024",
+      description: "Specialized in software engineering and web development",
+      icon: <FaGraduationCap className="text-primary" />
+    },
+    {
+      degree: "Full Stack Web Development",
+      institution: "Full Stack Guru",
+      year: "2025",
+      description: "Intensive program covering modern web technologies and frameworks.",
+      icon: <FaAward className="text-warning" />
+    }
+  ];
+
   return (
-    <div>
-        <div class='aab'>
-       <Marquee >
- <h4>Welcome to Rutvik Patil Portfolio !</h4> 
-</Marquee>
-</div>
-       
+    <div className="App">
+      {/* Navigation */}
+      <Navbar bg="white" expand="lg" fixed="top" className="shadow-sm">
+        <Container>
+          <Navbar.Brand href="#home" className="fw-bold fs-3">
+            <span className="text-primary">Port</span>
+            <span className="text-secondary">folio</span>
+          </Navbar.Brand>
+          <Navbar.Toggle aria-controls="basic-navbar-nav" />
+          <Navbar.Collapse id="basic-navbar-nav">
+            <Nav className="ms-auto">
+              {['home', 'about', 'skills', 'education', 'projects', 'contact'].map((section) => (
+                <Nav.Link
+                  key={section}
+                  href={`#${section}`}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    scrollToSection(section);
+                  }}
+                  className={`text-capitalize mx-2 ${
+                    activeSection === section ? 'text-primary fw-bold' : ''
+                  }`}
+                >
+                  {section}
+                </Nav.Link>
+              ))}
+            </Nav>
+          </Navbar.Collapse>
+        </Container>
+      </Navbar>
 
-      <Nav className="justify-content-center" activeKey="/home">
-        <Nav.Item class='link1'>
-          <Nav.Link href="/home" >HOME</Nav.Link>
-        </Nav.Item>
-        <Nav.Item class='link1'>
-          <Nav.Link eventKey="link-1" >SKILLS</Nav.Link>
-        </Nav.Item>
-        <Nav.Item class='link1'>
-          <Nav.Link eventKey="link-2" >PROJECT</Nav.Link>
-        </Nav.Item>
-        <Nav.Item class='link1'>
-          <Nav.Link eventKey="link-3">ABOUT</Nav.Link>
-        </Nav.Item>
-      </Nav>
+      {/* Hero Section */}
+      <section id="home" className="min-vh-100 d-flex align-items-center bg-light">
+        <Container>
+          <Row className="align-items-center">
+            <Col lg={6} className="text-center text-lg-start">
+              <div className="mb-4">
+                {/* <div className="rounded-circle bg-primary d-inline-flex align-items-center justify-content-center" 
+                     style={{ width: '120px', height: '120px' }}>
+                  <span className="text-white fs-1 fw-bold">JD</span>
+                </div> */}
+              </div>
+              <h1 className="display-3 fw-bold mb-3">
+                Rutvik <span className="text-primary">Patil</span>
+              </h1>
+              <p className="lead mb-4 text-muted">
+               My name is Rutvik Patil. I possess a solid foundation in web development and programming with technical skills in Java, HTML, CSS, JavaScript, and React.I bring strong soft skills to the table — I am a hardworking, quick learner, and highly adaptable.
 
+              </p>
+              <div className="d-flex flex-column flex-sm-row gap-3 justify-content-center justify-content-lg-start">
+                <Button 
+                  variant="primary" 
+                  size="lg" 
+                  onClick={() => scrollToSection('projects')}
+                  className="px-4"
+                >
+                  View My Work
+                </Button>
+                <Button 
+                  variant="outline-primary" 
+                  size="lg" 
+                  onClick={() => scrollToSection('contact')}
+                  className="px-4"
+                >
+                  Get In Touch
+                </Button>
+              </div>
+            </Col>
+            <Col lg={6} className="text-center">
+              <img
+                src="https://images.pexels.com/photos/3184305/pexels-photo-3184305.jpeg?auto=compress&cs=tinysrgb&w=600"
+                alt="Developer workspace"
+                className="img-fluid rounded shadow-lg"
+              />
+            </Col>
+          </Row>
+          <div className="text-center mt-5">
+            <FaChevronDown className="text-muted fs-4" style={{ animation: 'bounce 2s infinite' }} />
+          </div>
+        </Container>
+      </section>
 
-      <Container >
-      <Row >
-        <Col >
-        <h1>Hi all, I'm Rutvik</h1>
-        <p>My name is Rutvik Patil. I possess a solid foundation in web development and programming with technical skills in Java, HTML, CSS,
-JavaScript, and React.I bring strong soft skills to the table — I am a hardworking, quick learner, and highly adaptable.</p>
- <Nav>
- <Nav.Item style={{margin:'-5px'}} class='link2'>
- <Nav.Link>
- <Badge color="secondary">
- <GitHubIcon color="action" />
- </Badge>
- </Nav.Link>
- </Nav.Item>
-
-<Nav.Item style={{margin:'-5px'}} class='link2'>
-<Nav.Link>
-<Badge  color="primary">
-  <MailIcon color="action" />
-</Badge>
-</Nav.Link>
-</Nav.Item>
-
-<Nav.Item style={{margin:'-5px'}} class='link2'>
-<Nav.Link>
-<Badge  color="primary">
-  <InstagramIcon  color="action" />
-</Badge>
-</Nav.Link>
-</Nav.Item>
-
-<Nav.Item style={{margin:'-5px'}} class='link2'>
-    <Nav.Link>
-        <SvgIcon>
-  <svg width="1000px" height="1000px" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" fill="none"><path fill="#0A66C2" d="M12.225 12.225h-1.778V9.44c0-.664-.012-1.519-.925-1.519-.926 0-1.068.724-1.068 1.47v2.834H6.676V6.498h1.707v.783h.024c.348-.594.996-.95 1.684-.925 1.802 0 2.135 1.185 2.135 2.728l-.001 3.14zM4.67 5.715a1.037 1.037 0 01-1.032-1.031c0-.566.466-1.032 1.032-1.032.566 0 1.031.466 1.032 1.032 0 .566-.466 1.032-1.032 1.032zm.889 6.51h-1.78V6.498h1.78v5.727zM13.11 2H2.885A.88.88 0 002 2.866v10.268a.88.88 0 00.885.866h10.226a.882.882 0 00.889-.866V2.865a.88.88 0 00-.889-.864z"/></svg>
-
-</SvgIcon>
-    </Nav.Link>
-</Nav.Item>
-
-
-</Nav>
-
-
-
-
-        </Col>
-      
-        <Col >
-          <Container>
+      {/* About Section */}
+      <section id="about" className="py-5 bg-white">
+        <Container>
+          <Row className="mb-5">
+            <Col className="text-center">
+              <h2 className="display-4 fw-bold mb-3">About Me</h2>
+              <p className="lead text-muted">
+                I'm a passionate full-stack developer with expertise in modern web technologies
+              </p>
+            </Col>
+          </Row>
+          
+          <Row className="align-items-center">
+            <Col md={6} className="mb-4">
+              <div className="bg-light rounded p-4 shadow-sm">
+                <img
+                  src="https://images.pexels.com/photos/3184360/pexels-photo-3184360.jpeg?auto=compress&cs=tinysrgb&w=600"
+                  alt="About me"
+                  className="img-fluid rounded"
+                />
+              </div>
+            </Col>
             
-      <Row>
-        <Col lg={8} sm={12}>
-          <Image src="https://cdni.iconscout.com/illustration/premium/preview/man-working-on-ui-ux-design-illustration-download-in-svg-png-gif-file-formats--creative-designer-designing-pack-development-illustrations-7963304.png?f=webp&h=700" thumbnail />
-        </Col>
-      </Row>
-    </Container>
-        </Col>
-      </Row>
-    </Container>
-    <br/><br/>
+            <Col md={6}>
+              <div className="mb-4">
+                <p className="fs-5 text-muted mb-3">
+                  My name is Rutvik Patil, and I am a recent graduate from Savitribai
+Phule Pune University (SPPU). I possess a solid foundation in web
+development and programming with technical skills in Java, HTML, CSS,
+JavaScript, and React.
 
-       <Container className="mt-4">
-      <Row className="g-4">
-        <Col xs={12} sm={6} md={4}>
-          <Card>
-            <Card.Img variant="top" src="https://via.placeholder.com/300x180" alt="Card image" />
-            <Card.Body>
-              <Card.Title>Card Title</Card.Title>
-              <Card.Subtitle className="mb-2 text-muted">Card Subtitle</Card.Subtitle>
-              <Card.Link href="#">Card Link</Card.Link>
-              <Card.Link href="#">Another Link</Card.Link>
-            </Card.Body>
-          </Card>
-        </Col>
+Beyond technical proficiency, I bring strong soft skills to the table — I
+am a hardworking, quick learner, and highly adaptable individual who
+can efficiently pick up new technologies and work in dynamic
+environments. 
+                </p>
+                
+                <p className="fs-5 text-muted mb-4">
+                  I take pride in being honest, reliable, and self-motivated,
+with a strong commitment to continuous learning and professional
+growth.
 
-        <Col xs={12} sm={6} md={4}>
-          <Card>
-            <Card.Img variant="top" src="https://via.placeholder.com/300x180" alt="Card image" />
-            <Card.Body>
-              <Card.Title>Card Title</Card.Title>
-              <Card.Subtitle className="mb-2 text-muted">Card Subtitle</Card.Subtitle>
-              <Card.Link href="#">Card Link</Card.Link>
-              <Card.Link href="#">Another Link</Card.Link>
-            </Card.Body>
-          </Card>
-        </Col>
+I am looking forward to contributing to a forward-thinking organization
+where I can apply my skills and grow as a software professional.
+                </p>
+                
+                <div className="d-flex flex-wrap gap-2">
+                  {["Problem Solver", "Team Player", "Quick Learner", "Detail Oriented"].map((trait, index) => (
+                    <Badge key={index} bg="primary" className="p-2 fs-6">
+                      {trait}
+                    </Badge>
+                  ))}
+                </div>
+              </div>
+            </Col>
+          </Row>
+        </Container>
+      </section>
 
-        <Col xs={12} sm={6} md={4}>
-          <Card>
-            <Card.Img variant="top" src="https://via.placeholder.com/300x180" alt="Card image" />
-            <Card.Body>
-              <Card.Title>Card Title</Card.Title>
-              <Card.Subtitle className="mb-2 text-muted">Card Subtitle</Card.Subtitle>
-              <Card.Link href="#">Card Link</Card.Link>
-              <Card.Link href="#">Another Link</Card.Link>
-            </Card.Body>
-          </Card>
-        </Col>
-      </Row>
-    </Container>
+      {/* Skills Section */}
+      <section id="skills" className="py-5 bg-light">
+        <Container>
+          <Row className="mb-5">
+            <Col className="text-center">
+              <h2 className="display-4 fw-bold mb-3">Skills</h2>
+              <p className="lead text-muted">
+                Technologies and tools I work with
+              </p>
+            </Col>
+          </Row>
+          
+          <Row>
+            {skills.map((skill, index) => (
+              <Col md={6} lg={4} key={index} className="mb-4">
+                <Card className="h-100 shadow-sm border-0">
+                  <Card.Body>
+                    <div className="d-flex align-items-center mb-3">
+                      <div className="fs-2 me-3">
+                        {skill.icon}
+                      </div>
+                      <h5 className="mb-0">{skill.name}</h5>
+                    </div>
+                    <ProgressBar 
+                      now={skill.level} 
+                      label={`${skill.level}%`}
+                      variant="primary"
+                      className="mb-2"
+                    />
+                  </Card.Body>
+                </Card>
+              </Col>
+            ))}
+          </Row>
+        </Container>
+      </section>
+
+      {/* Education Section */}
+      <section id="education" className="py-5 bg-white">
+        <Container>
+          <Row className="mb-5">
+            <Col className="text-center">
+              <h2 className="display-4 fw-bold mb-3">Education</h2>
+              <p className="lead text-muted">
+                My academic journey and certifications
+              </p>
+            </Col>
+          </Row>
+          
+          <Row>
+            {education.map((edu, index) => (
+              <Col md={6} key={index} className="mb-4">
+                <Card className="h-100 shadow-sm border-0">
+                  <Card.Body>
+                    <div className="d-flex align-items-center mb-3">
+                      <div className="fs-2 me-3">
+                        {edu.icon}
+                      </div>
+                      <div>
+                        <h5 className="mb-1">{edu.degree}</h5>
+                        <p className="text-muted mb-0">{edu.institution}</p>
+                      </div>
+                    </div>
+                    <Badge bg="secondary" className="mb-2">{edu.year}</Badge>
+                    <p className="text-muted">{edu.description}</p>
+                  </Card.Body>
+                </Card>
+              </Col>
+            ))}
+          </Row>
+        </Container>
+      </section>
+
+      {/* Projects Section */}
+      <section id="projects" className="py-5 bg-light">
+        <Container>
+          <Row className="mb-5">
+            <Col className="text-center">
+              <h2 className="display-4 fw-bold mb-3">Projects</h2>
+              <p className="lead text-muted">
+                Some of my recent work
+              </p>
+            </Col>
+          </Row>
+          
+          <Row>
+            {projects.map((project, index) => (
+              <Col lg={4} md={6} key={index} className="mb-4">
+                <Card className="h-100 shadow-sm border-0">
+                  <Card.Img 
+                    variant="top" 
+                    src={project.image} 
+                    alt={project.title}
+                    style={{ height: '200px', objectFit: 'cover' }}
+                  />
+                  <Card.Body className="d-flex flex-column">
+                    <Card.Title>{project.title}</Card.Title>
+                    <Card.Text className="text-muted flex-grow-1">
+                      {project.description}
+                    </Card.Text>
+                    <div className="mb-3">
+                      {project.technologies.map((tech, techIndex) => (
+                        <Badge key={techIndex} bg="outline-primary" className="me-1 mb-1">
+                          {tech}
+                        </Badge>
+                      ))}
+                    </div>
+                    <div className="d-flex gap-2">
+                      <Button 
+                        variant="primary" 
+                        size="sm" 
+                        href={project.liveLink}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex-fill"
+                      >
+                        <FaExternalLinkAlt className="me-1" />
+                        Live Demo
+                      </Button>
+                      <Button 
+                        variant="outline-primary" 
+                        size="sm" 
+                        href={project.codeLink}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex-fill"
+                      >
+                        <FaCode className="me-1" />
+                        Source Code
+                      </Button>
+                    </div>
+                  </Card.Body>
+                </Card>
+              </Col>
+            ))}
+          </Row>
+        </Container>
+      </section>
+
+      {/* Contact Section */}
+      <section id="contact" className="py-5 bg-primary text-white">
+        <Container>
+          <Row className="mb-5">
+            <Col className="text-center">
+              <h2 className="display-4 fw-bold mb-3">Get In Touch</h2>
+              <p className="lead">
+                Let's work together to bring your ideas to life
+              </p>
+            </Col>
+          </Row>
+          
+          <Row className="justify-content-center">
+            <Col lg={8}>
+              <Row>
+                <Col md={4} className="text-center mb-4">
+                  <div className="fs-1 mb-3">
+                    <FaEnvelope />
+                  </div>
+                  <h5>Email</h5>
+                  <p className="text-light">rutvikpatilp@gmail.com</p>
+                </Col>
+                <Col md={4} className="text-center mb-4">
+                  <div className="fs-1 mb-3">
+                    <FaPhone />
+                  </div>
+                  <h5>Phone</h5>
+                  <p className="text-light">7262868030</p>
+                </Col>
+                <Col md={4} className="text-center mb-4">
+                  <div className="fs-1 mb-3">
+                    <FaMapMarkerAlt />
+                  </div>
+                  <h5>Location</h5>
+                  <p className="text-light">Pune, Maharashtra</p>
+                </Col>
+              </Row>
+              
+              <div className="text-center mt-4">
+                <div className="d-flex justify-content-center gap-3">
+                  <Button variant="outline-light" size="lg" className="rounded-circle">
+                    <a href='https://github.com/Rutvik5spy' ><FaGithub /></a>
+                  </Button>
+                  <Button variant="outline-light" size="lg" className="rounded-circle">
+                    <FaLinkedin />
+                  </Button>
+                  <Button variant="outline-light" size="lg" className="rounded-circle">
+                    <FaEnvelope />
+                  </Button>
+                </div>
+              </div>
+            </Col>
+          </Row>
+        </Container>
+      </section>
+
+      {/* Footer */}
+      <footer className="py-4 bg-dark text-white text-center">
+        <Container>
+          <p className="mb-0">&copy; 2025 Rutvik Web-Developer. All rights reserved.</p>
+        </Container>
+      </footer>
     </div>
   );
 }
